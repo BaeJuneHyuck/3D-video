@@ -78,13 +78,13 @@ int main(int argc, char* argv[])
 			{
 				cout << "t = " << t << ", t0 = " << t0 << ", t1 = " << t1 << ", t2 = " << t2 << endl;
 				cout << " - too slow sampling: copying previous image..." << endl;
-				ofstream f(string("") + to_string(i * cam_count + cam_index) + ".jpg", ios::binary);
+				ofstream f(string("view_") + to_string(i * cam_count + cam_index) + ".jpg", ios::binary);
 				f.write(&chunks[0].image[0], chunks[0].header.len);
 				continue;
 			}
 			else if (t1 < t2)
 			{
-				ofstream f(string("") + to_string(i * cam_count + cam_index) + ".jpg", ios::binary);
+				ofstream f(string("view_") + to_string(i * cam_count + cam_index) + ".jpg", ios::binary);
 				f.write(&chunks[1].image[0], chunks[1].header.len);
 			}
 			else
