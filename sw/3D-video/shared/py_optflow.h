@@ -13,8 +13,7 @@ using namespace cv;
 
 // < config below >---
 
-const wstring python_home{ L"C:\\Users\\Lune\\Anaconda2\\envs\\raft" };
-const string module_name{ "wrapper" };
+const string module_name{ "helper" };
 const string function_name{ "run" };
 
 // ---< config above >
@@ -57,14 +56,12 @@ void py_calc_optflow(string path1, string path2, Mat& flow)
 
 void py_initialize()
 {
-	Py_SetPythonHome(python_home.c_str());
-	Py_Initialize();
-	_import_array();
-	PyRun_SimpleString("import sys; sys.path.insert(1, '../core'); sys.path.insert(1, '..')");
-
-	PyObject* py_module_name = PyUnicode_FromString(module_name.c_str());
-	PyObject* module = PyImport_Import(py_module_name);
-	Py_DECREF(py_module_name);
-
-	py_func = PyObject_GetAttrString(module, function_name.c_str());
+		Py_Initialize();
+		_import_array();
+		PyRun_SimpleString("import sys; sys.path.insert(0, 'RAFT/core'); sys.path.insert(0, 'RAFT')");
+		PyObject* py_module_name = PyUnicode_FromString(module_name.c_str());
+		PyObject* module = PyImport_Import(py_module_name);
+		Py_DECREF(py_module_name);
+		
+		py_func = PyObject_GetAttrString(module, function_name.c_str());
 }
