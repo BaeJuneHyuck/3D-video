@@ -4,4 +4,6 @@ Pipeline for recording and playing of multiview videos, where the source video c
 
 The result 3D video is synthesized utilizing optical flow based point-to-point matching, and played depending on the eye position of the viewer, without special glasses.
 
+For undergraduate final project.
+
 ---
