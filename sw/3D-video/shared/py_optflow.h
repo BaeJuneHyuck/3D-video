@@ -8,6 +8,8 @@
 #include <opencv2/opencv.hpp>
 #include <string>
 
+#include <filesystem>
+
 using namespace std;
 using namespace cv;
 
@@ -56,12 +58,14 @@ void py_calc_optflow(string path1, string path2, Mat& flow)
 
 void py_initialize()
 {
-		Py_Initialize();
-		_import_array();
-		PyRun_SimpleString("import sys; sys.path.insert(0, 'RAFT/core'); sys.path.insert(0, 'RAFT')");
-		PyObject* py_module_name = PyUnicode_FromString(module_name.c_str());
-		PyObject* module = PyImport_Import(py_module_name);
-		Py_DECREF(py_module_name);
+	filesystem::current_path("./RAFT/");
+
+	Py_Initialize();
+	_import_array();
+	PyRun_SimpleString("import sys; sys.path.insert(0, '.')");
+	PyObject* py_module_name = PyUnicode_FromString(module_name.c_str());
+	PyObject* module = PyImport_Import(py_module_name);
+	Py_DECREF(py_module_name);
 		
-		py_func = PyObject_GetAttrString(module, function_name.c_str());
+	py_func = PyObject_GetAttrString(module, function_name.c_str());
 }
