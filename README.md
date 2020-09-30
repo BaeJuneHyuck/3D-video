@@ -1,10 +1,5 @@
 # 3D-video
-PNU Graduation project 2020
-3D video, which depends on the position of the viewer. it does not require 3D glasses.
+Pipeline for recording and playing of multiview videos, where the source video clips are captured with multiple (4X4) ESP32-Cam array.
+The result 3D video is synthesized utilizing optical flow based point-to-point matching, and played depending on the eye position of the viewer, without special glasses.
 
------------
-- 팀번호(Team No.): 22
-
-- 팀명(Team Name): 3D 멀미
-
-- 팀원(Team Member): 배준혁(201424465)
+---
